@@ -5,7 +5,7 @@ NextJS website parsing data from Alpha Vantage API and Yahoo Finance API to allo
 
 2 - Ensure Node version 16.13.1 or higher is installed (may work with previous versions although untested)
 
-3 - In the install directory run the node command "npm install" to install node packages
+3 - In the home directory (where the node_modules folder is) run the node command "npm install" in a cmd to install node packages
 
 4 - Once packages are installed run the node command "npm run dev"
 
