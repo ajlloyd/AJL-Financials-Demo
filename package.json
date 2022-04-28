@@ -1,0 +1,29 @@
+{
+  "name": "stock-value",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "chart.js": "^3.7.1",
+    "next": "12.1.4",
+    "node-fetch": "^3.2.3",
+    "nprogress": "^0.2.0",
+    "react": "18.0.0",
+    "react-bootstrap": "^2.2.3",
+    "react-chartjs-2": "^4.1.0",
+    "react-dom": "18.0.0",
+    "react-icons": "^4.3.1",
+    "request": "^2.88.2",
+    "sass": "^1.50.0"
+  },
+  "devDependencies": {
+    "eslint": "8.12.0",
+    "eslint-config-next": "12.1.4"
+  }
+}

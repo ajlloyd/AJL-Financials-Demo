@@ -1,0 +1,83 @@
+.homeButton{
+    margin: 1%;
+    border-radius: 5%;
+}
+
+.container{
+    padding: 5%;
+    width: 100%;
+    
+    table {
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: collapse;
+        
+        th, td{
+            border-bottom: 1px solid #ddd;
+            padding: 15px;
+
+            .analysisType{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: left;
+
+                .info{
+                    //background-color: aqua;
+                    margin-right: 10px;
+    
+                    :hover{
+                        cursor: pointer;
+                        filter: invert(100%);
+    
+                    }
+                }
+
+            }
+
+
+            
+
+
+            
+          }
+        
+      }
+
+      
+
+}
+
+#header{
+    font-weight: 700;
+    font-size: larger;
+   
+}
+
+#headerRow{
+    background-color: black;
+    color: #ddd;
+    
+    td{
+        text-transform: uppercase;
+    }
+    
+}
+
+#yoyHeader{
+    background-color: rgb(230, 230, 230);
+    font-weight: bold;
+}
+
+#yoyRow{
+    background-color: #fff;
+    #year{
+    text-indent: 3%;
+    }
+}
+
+#oddRow{
+    background-color: #d6e6ff;
+
+}
+
