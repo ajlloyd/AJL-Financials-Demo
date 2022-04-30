@@ -1,4 +1,4 @@
-# fundemental-stock-analysis
+# AJL Financials - fundemental-stock-analysis
 NextJS website parsing data from Alpha Vantage API and Yahoo Finance API to allow a user to compare up to 5 stock tickers of their choice. Follow below steps to install this locally:
 
 1 - Either clone this repository or download the source files
@@ -13,6 +13,6 @@ NextJS website parsing data from Alpha Vantage API and Yahoo Finance API to allo
 
 6 - Navigate to local host and UI should appear. Most tickers work (i.e. MSFT, AAPL, ADBE); however, more obscure tickers may give an error
 
-7 - Allow around 20 to 30 seconds per ticker as the API has to fetch the data (and a loading screen is not yet implemented)
+7 - Allow around 20 to 30 seconds per ticker as the API has to fetch the data
 
 8 - Compare and Profit!
