@@ -66,19 +66,21 @@ export default function Home(props) {
       </Head>
       <nav className={styles.navBar}>
         <div className={styles.navLeft}>
-          <a><RiMoneyPoundCircleFill/> AJL Financials</a>
+          <a href="https://ajlloyd-solutions.herokuapp.com/"><RiMoneyPoundCircleFill/> AJL Financials</a>
 
         </div>
 
         <div className={styles.navRight}>
-          <a>Documentation</a>
-          <a>About</a>
-          <a>Support</a>
+          <a href='/documentation'>Documentation</a>
+
+          <a href="/support">Support</a>
         </div>
 
       </nav>
 
       <main className={styles.main}>
+        
+
         <h1 className={styles.title}>
           Compare Your Stocks Now
         </h1>

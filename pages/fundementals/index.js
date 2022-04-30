@@ -8,7 +8,7 @@ import {BsArrowUp, BsArrowDown, BsBackspace} from "react-icons/bs"
 import Button from 'react-bootstrap/Button'
 import OverlayStockTable from '../../components/OverlayStockTable'
 import Graphy from '../../components/Graphy'
-
+var Scraper = require('images-scraper');
 
 
 
@@ -77,36 +77,57 @@ const Index = (props, {income}) => {
 
 
     return (
-        <div>
+        <div className={styles.metaContainer}>
+            <div className={styles.headComponents}>
+                <Button className={styles.homeButton} variant="danger" href='/'> <BsBackspace/> Home </Button>
+                <h1 className={styles.outputTitle}>Output</h1>
+                <div className={[styles.darkMode, "form-check form-switch"].join(" ")} >
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={console.log("on")}/>
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Dark Mode</label>
+                </div>
 
-            <Button className={styles.homeButton} variant="danger" href='/'> <BsBackspace/> Home </Button>
+            </div>
+
+            
+
             <div className={styles.container}>
                 <table>
                     <tbody>
 
-                        {/* Header -------------------------------------------------------------------------------------------------------------------------------------------*/}
+
+
+                        {/* Stock Ticker Header -------------------------------------------------------------------------------------------------------------------------------------------*/}
                         <tr id={styles.headerRow}><td>Stock Ticker:</td>
                         {tickerPayloadArray.map((x, i) => {
                         return (
                         <td key={`dynamicTickerHeader${i}`}>{x}</td>)
                         })}</tr>
 
-                        <Graphy/>
+                        {/*<Graphy/>*/}
 
+                        {/* Image -------------------------------------------------------------------------------------------------------------------------------------------*/}
+
+                        <tr id={styles.whiteRow}><td></td>
+                        {tickerPayloadArray.map((x, i) => {
+                        return (
+                        <td key={`logo${i}`}>
+                            <img id={styles.logoImage} src={props.logoImages[i]} />
+                        </td>)
+                        })}</tr>
 
                         
 
 
 
                         {/* 1 - Stock Name Row */}
-                        <tr><td>Name</td>
+                        <tr id={styles.whiteRow}><td>Name</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`name${i}`}>{props.priceData[i]["shortName"]}</td>)
                         })}</tr>
 
                         {/* 1 - Stock Name Row */}
-                        <tr><td>Sector</td>
+                        <tr id={styles.whiteRow}><td>Sector</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`sector${i}`}>{props.overviewData[i]["Sector"]}</td>)
@@ -114,7 +135,7 @@ const Index = (props, {income}) => {
 
 
                         {/* 2 - Analyst Rating  */}
-                        <tr><td>Average Analyst Rating</td>
+                        <tr id={styles.whiteRow}><td>Average Analyst Rating</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`Rating${i}`}>{props.priceData[i]["averageAnalystRating"]}</td>)
@@ -129,14 +150,14 @@ const Index = (props, {income}) => {
                         })}</tr>
 
                         {/* 3 - Realtime Stock Price Row */}
-                        <tr><td>Price</td>
+                        <tr id={styles.whiteRow}><td>Price</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`price${i}`}>{props.priceData[i]["regularMarketPrice"] + " " + props.priceData[i]["currency"]}</td>)
                         })}</tr>
 
                         {/* 4 - Market Change Since Open */}
-                        <tr><td>Change Since Close</td>
+                        <tr id={styles.whiteRow}><td>Change Since Close</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`change${i}`}>{props.priceData[i]["regularMarketChange"].toFixed(2) + " " + props.priceData[i]["currency"] + "  (" + props.priceData[i]["regularMarketChangePercent"].toFixed(2) + " %)"}</td>
@@ -145,28 +166,28 @@ const Index = (props, {income}) => {
 
 
                         {/* 6 - Fifty Day MA */}
-                        <tr><td>50 Day MA</td>
+                        <tr id={styles.whiteRow}><td>50 Day MA</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`50dayMA${i}`}>{props.priceData[i]["fiftyDayAverage"].toFixed(2)}</td>)
                         })}</tr>
 
                         {/* 6 - Two hundred Day MA */}
-                        <tr><td>200 Day MA</td>
+                        <tr id={styles.whiteRow}><td>200 Day MA</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`200dayMA${i}`}>{props.priceData[i]["twoHundredDayAverage"].toFixed(2)}</td>)
                         })}</tr>
 
                         {/* 7 - 52 Week High */}
-                        <tr><td>52 Week High</td>
+                        <tr id={styles.whiteRow}><td>52 Week High</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`52wkHigh${i}`}>{props.priceData[i]["fiftyTwoWeekHigh"].toFixed(2)}</td>)
                         })}</tr>
 
                         {/* 52 Week Low */}
-                        <tr><td>52 Week Low</td>
+                        <tr id={styles.whiteRow}><td>52 Week Low</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`52wkLow${i}`}>{props.priceData[i]["fiftyTwoWeekLow"].toFixed(2)}</td>)
@@ -174,7 +195,7 @@ const Index = (props, {income}) => {
 
 
                         {/* 52 Week High Discount Percentage */}
-                        <tr><td>52 Week High Discount (%)</td>
+                        <tr id={styles.whiteRow}><td>52 Week High Discount (%)</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`pctChange${i}`}>{(props.priceData[i]["fiftyTwoWeekHighChangePercent"]*100).toFixed(2) + " %"}</td>)
@@ -189,7 +210,7 @@ const Index = (props, {income}) => {
                         })}</tr>
 
                         {/* Earnings Per Share */}
-                        <tr><td>
+                        <tr id={styles.whiteRow}><td>
                             <div className={styles.analysisType}>
                                 <OverlayStockTable
                                 overlayHeader="Earnings Per Share (EPS)"
@@ -204,7 +225,7 @@ const Index = (props, {income}) => {
 
 
                         {/* Earnings Per Share Forecast */}
-                        <tr><td>
+                        <tr id={styles.whiteRow}><td>
                             <div className={styles.analysisType}>
                                 <OverlayStockTable
                                 overlayHeader="Earnings Per Share Forecast"
@@ -218,7 +239,7 @@ const Index = (props, {income}) => {
 
 
                         {/* Earnings Yield (per share) */}
-                        <tr><td>
+                        <tr id={styles.whiteRow}><td>
                             <div className={styles.analysisType}>
                                 <OverlayStockTable
                                 overlayHeader="Earnings Yield (per share)"
@@ -232,7 +253,7 @@ const Index = (props, {income}) => {
                         })}</tr>
 
                         {/* P/E Ratio */}
-                        <tr><td>
+                        <tr id={styles.whiteRow}><td>
                             <div className={styles.analysisType}>
                                 <OverlayStockTable
                                 overlayHeader="P/E Ratio (20 or lower)"
@@ -247,7 +268,7 @@ const Index = (props, {income}) => {
 
 
                         {/* PEG Ratio */}
-                        <tr><td>
+                        <tr id={styles.whiteRow}><td>
                             <div className={styles.analysisType}>
                                 <OverlayStockTable
                                 overlayHeader="PEG Ratio"
@@ -262,7 +283,7 @@ const Index = (props, {income}) => {
 
 
                         {/* Book Value */}
-                        <tr><td>
+                        <tr id={styles.whiteRow}><td>
                             <div className={styles.analysisType}>
                                 <OverlayStockTable
                                 overlayHeader="Book Value"
@@ -275,7 +296,7 @@ const Index = (props, {income}) => {
                         })}</tr>
 
                         {/* Price to Book ratio (<1 ideal) */}
-                        <tr><td> Price to Book ratio <BsArrowDown/> </td>
+                        <tr id={styles.whiteRow}><td> Price to Book ratio <BsArrowDown/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`pbRatio${i}`}>{ (props.priceData[i]["regularMarketPrice"] / props.priceData[i]["bookValue"]).toFixed(2) }</td>)
@@ -387,21 +408,21 @@ const Index = (props, {income}) => {
 
 
                         {/* Return on Equity */}
-                        <tr><td> Return on Equity (ROE) <BsArrowUp/> (14%+) </td>
+                        <tr id={styles.whiteRow}><td> Return on Equity (ROE) <BsArrowUp/> (14%+) </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`roe${i}`}> {((props.incomeData[i]["netIncome"] / props.balanceData[i]["totalShareholderEquity"])*100).toFixed(2) + " %"} </td>)
                         })}</tr>
 
                          {/* Free Cash Flow Yield */}
-                         <tr><td> Free Cash Flow Yield <BsArrowUp/> (5%+) </td>
+                         <tr id={styles.whiteRow}><td> Free Cash Flow Yield <BsArrowUp/> (5%+) </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`fcfy${i}`}> insertDataHere</td>)
                         })}</tr>      
 
                         {/* Total Shareholder Yield */}
-                        <tr><td> Total Shareholder Yield <BsArrowUp/> </td>
+                        <tr id={styles.whiteRow}><td> Total Shareholder Yield <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`shareholderYield${i}`}> insertDataHere</td>)
@@ -417,14 +438,14 @@ const Index = (props, {income}) => {
                         })}</tr>
 
                         {/* Dividend per share */}
-                        <tr><td> Dividend Per Share</td>
+                        <tr id={styles.whiteRow}><td> Dividend Per Share</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`divPerShare${i}`}> {props.overviewData[i]["DividendPerShare"]}</td>)
                         })}</tr>
 
                         {/* Dividend Yield */}
-                        <tr><td> Dividend Yield</td>
+                        <tr id={styles.whiteRow}><td> Dividend Yield</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`divYield${i}`}> {(props.overviewData[i]["DividendYield"]*100) + " %"}</td>)
@@ -438,14 +459,14 @@ const Index = (props, {income}) => {
                         })}</tr>
 
                         {/* Total Revenue */}
-                        <tr><td> Total Revenue (TTM) </td>
+                        <tr id={styles.whiteRow}><td> Total Revenue (TTM) </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`totalRevenue${i}`}> {((props.incomeData[i]["annualReports"][0]["totalRevenue"]/10000000|0).toLocaleString())} </td>)
                         })}</tr>   
 
                         {/* Cost of Goods */}
-                        <tr><td> Cost of Goods (TTM) </td>
+                        <tr id={styles.whiteRow}><td> Cost of Goods (TTM) </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`costOfGoods${i}`}> {((props.incomeData[i]["annualReports"][0]["costofGoodsAndServicesSold"]/10000000|0).toLocaleString())} </td>)
@@ -453,21 +474,21 @@ const Index = (props, {income}) => {
 
 
                         {/* Operating Income/Loss (TTM) */}
-                        <tr><td> Operating Income/Loss (TTM) </td>
+                        <tr id={styles.whiteRow}><td> Operating Income/Loss (TTM) </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`opIncomeAndLoss${i}`}> {((props.incomeData[i]["annualReports"][0]["operatingIncome"]/10000000|0).toLocaleString())} </td>)
                         })}</tr>  
 
                         {/* Gross Profit (TTM) */}
-                        <tr><td> Gross Profit (TTM) </td>
+                        <tr id={styles.whiteRow}><td> Gross Profit (TTM) </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`grossProfit${i}`}> {((props.incomeData[i]["annualReports"][0]["grossProfit"]/10000000|0).toLocaleString())} </td>)
                         })}</tr> 
 
                         {/* Cost of Goods Margin (TTM) */}
-                        <tr><td> Cost of Goods Margin (TTM) <BsArrowDown/> </td>
+                        <tr id={styles.whiteRow}><td> Cost of Goods Margin (TTM) <BsArrowDown/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`grossProfit${i}`}> {(((props.incomeData[i]["annualReports"][0]["costofGoodsAndServicesSold"]/props.incomeData[i]["annualReports"][0]["totalRevenue"])*100).toFixed(2)) + " %"} </td>)
@@ -475,7 +496,7 @@ const Index = (props, {income}) => {
 
 
                         {/* Operating Margin (TTM) */}
-                        <tr><td> Operating Margin (TTM) <BsArrowUp/> </td>
+                        <tr id={styles.whiteRow}><td> Operating Margin (TTM) <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`grossProfit${i}`}> {(((props.incomeData[i]["annualReports"][0]["operatingIncome"]/props.incomeData[i]["annualReports"][0]["totalRevenue"])*100).toFixed(2)) + " %"} </td>)
@@ -489,85 +510,80 @@ const Index = (props, {income}) => {
                         })}</tr>
 
                         {/* Total Cash and ST investments */}
-                        <tr><td>Total Cash and Short Term Investments</td>
+                        <tr id={styles.whiteRow}><td>Total Cash and Short Term Investments</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`cashAndInvestments${i}`}>{((props.balanceData[i]["annualReports"][0]["cashAndShortTermInvestments"]/10000000|0).toLocaleString())}</td>)
                         })}</tr>
 
                         {/* Total Current Assets */}
-                        <tr><td>Total Current Assets</td>
+                        <tr id={styles.whiteRow}><td>Total Current Assets</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`currentAssets${i}`}>{((props.balanceData[i]["annualReports"][0]["totalCurrentAssets"]/10000000|0).toLocaleString())}</td>)
                         })}</tr>
 
                         {/* Total Current Liabilities */}
-                        <tr><td>Total Current Liabilities</td>
+                        <tr id={styles.whiteRow}><td>Total Current Liabilities</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`currentLiabilities${i}`}>{((props.balanceData[i]["annualReports"][0]["totalCurrentLiabilities"]/10000000|0).toLocaleString())}</td>)
                         })}</tr>
 
                         {/* Total 1 year Excess */}
-                        <tr><td>1 Year Current Excess <BsArrowUp/> </td>
+                        <tr id={styles.whiteRow}><td>1 Year Current Excess <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`oneYearExcess${i}`}>{(((props.balanceData[i]["annualReports"][0]["totalCurrentAssets"] - props.balanceData[i]["annualReports"][0]["totalCurrentLiabilities"])/10000000|0).toLocaleString())}</td>)
                         })}</tr>
 
                         {/* Asset to Liability Ratio */}
-                        <tr><td>Current Asset to Liability Ratio <BsArrowUp/> </td>
+                        <tr id={styles.whiteRow}><td>Current Asset to Liability Ratio <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`assetToLiabilityRatio${i}`}>{((props.balanceData[i]["annualReports"][0]["totalCurrentAssets"]/props.balanceData[i]["annualReports"][0]["totalCurrentLiabilities"]).toFixed(2))}</td>)
                         })}</tr>
 
                         {/* Total Assets */}
-                        <tr><td>Total Assets</td>
+                        <tr id={styles.whiteRow}><td>Total Assets</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`totalAssets${i}`}>{((props.balanceData[i]["annualReports"][0]["totalAssets"]/10000000|0).toLocaleString())}</td>)
                         })}</tr>
 
                         {/* Total Liabilities */}
-                        <tr><td>Total Liabilities</td>
+                        <tr id={styles.whiteRow}><td>Total Liabilities</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`totalLiabilities${i}`}>{((props.balanceData[i]["annualReports"][0]["totalLiabilities"]/10000000|0).toLocaleString())}</td>)
                         })}</tr>
 
                         {/* TATL Ratio */}
-                        <tr><td>Total Asset to Liability Ratio (TATL) <BsArrowUp/> </td>
+                        <tr id={styles.whiteRow}><td>Total Asset to Liability Ratio (TATL) <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`assetToLiabilityRatio${i}`}>{((props.balanceData[i]["annualReports"][0]["totalAssets"]/props.balanceData[i]["annualReports"][0]["totalLiabilities"]).toFixed(2))}</td>)
                         })}</tr>
 
                         {/* Total Shareholder Equity */}
-                        <tr><td>Total Shareholder Equity</td>
+                        <tr id={styles.whiteRow}><td>Total Shareholder Equity</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`totalShareholderEquity${i}`}>{((props.balanceData[i]["annualReports"][0]["totalShareholderEquity"]/10000000|0).toLocaleString())}</td>)
                         })}</tr>
 
                         {/* Debt to Equity Ratio */}
-                        <tr><td>Debt to Equity Ratio <BsArrowDown/> </td>
+                        <tr id={styles.whiteRow}><td>Debt to Equity Ratio <BsArrowDown/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`debtToEquity${i}`}>{((props.balanceData[i]["annualReports"][0]["totalLiabilities"]/props.balanceData[i]["annualReports"][0]["totalShareholderEquity"]).toFixed(2))}</td>)
                         })}</tr>
 
-
                         {/* Altman Z-Score */}
-                        <tr><td>Altman Z-Score <BsArrowUp/> </td>
+                        <tr id={styles.whiteRow}><td>Altman Z-Score <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
-
                             const totalAssets = props.balanceData[i]["annualReports"][0]["totalAssets"]
                             const totalLiabilities = props.balanceData[i]["annualReports"][0]["totalLiabilities"]
-
-
-
                             const workingCapital = props.balanceData[i]["annualReports"][0]["totalCurrentAssets"] - props.balanceData[i]["annualReports"][0]["totalCurrentLiabilities"]
                             const a = workingCapital / totalAssets
                             const b = props.balanceData[i]["annualReports"][0]["retainedEarnings"] / totalAssets
@@ -575,19 +591,11 @@ const Index = (props, {income}) => {
                             const marketCapitalisation = props.balanceData[i]["annualReports"][0]["commonStockSharesOutstanding"] * props.priceData[i]["regularMarketPrice"]
                             const d = marketCapitalisation / totalLiabilities
                             const e = props.incomeData[i]["annualReports"][0]["totalRevenue"] / totalAssets
-
                             const altmanZScore = (1.2*a) + (1.4*b) + (3.3*c) + (0.6*d) + (1.0*e)
-                            
                             return(
                                 <td key={`debtToEquity${i}`}>{altmanZScore.toFixed(2)}</td>)
                         })}</tr>
 
-
-
-
-
-
-                    
                     </tbody>
                 </table>
             </div>
@@ -652,6 +660,7 @@ export async function getServerSideProps(props, context) {
     const grossProfitAll = [];
     const netProfitAll = [];
     const netProfitMarginAll = [];
+    const logoImages = [];
 
 
     for (const singleTicker in queryTickers) {
@@ -662,6 +671,7 @@ export async function getServerSideProps(props, context) {
         const overviewResponse = await fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=Z7EE76KI01SJKDIN`);
         const overview = await overviewResponse.json();
         overviewData.push(overview);
+        console.log(overview)
         await sleep(12000);  
         
 
@@ -670,6 +680,7 @@ export async function getServerSideProps(props, context) {
         const incomeResponse = await fetch(`https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=${ticker}&apikey=Z7EE76KI01SJKDIN`);
         const income = await incomeResponse.json();
         incomeData.push(income);
+        console.log(income)
         await sleep(12000);  
 
         // ----- Price Data - Yahoo Finance API -----:
@@ -691,19 +702,42 @@ export async function getServerSideProps(props, context) {
         await sleep(12000);
 
         // Gross profit growth:
+        console.log(`Gross Profit Growth Calculation running ${ticker}... `);
         const grossProfitGrowth = growthCalculation(income["annualReports"], "grossProfit")
         const normalisedGrossProfit = standardiseData(grossProfitGrowth)
         grossProfitAll.push(normalisedGrossProfit)
 
         // Net Profit growth:
+        console.log(`Net Profit Growth Calculation running ${ticker}... `);
         const netProfitGrowth = growthCalculation(income["annualReports"], "netIncome")
         const normalisedNetProfit = standardiseData(netProfitGrowth)
         netProfitAll.push(normalisedNetProfit)
 
         // Net Profit Margin
+        console.log(`Net Profit Margin Calculation running ${ticker}... `);
         const netProfitMargin = ratioCalculation(income["annualReports"], "netIncome", "totalRevenue")
         const normalisedNetProfitMargin = standardiseData(netProfitMargin)
         netProfitMarginAll.push(normalisedNetProfitMargin)
+
+        //image:
+        console.log(`Image Scraper running ${ticker}... `);
+        const google = new Scraper({
+            puppeteer: {
+              headless: true,
+            },
+        });
+
+        const logoQuery = overview["Name"]
+        const results = await google.scrape(`${logoQuery} official logo`, 1);
+        const image = results[0]["url"]
+        console.log(image);
+        logoImages.push(image)
+
+
+
+
+        
+
     }
 
     //console.log(overviewData)
@@ -713,7 +747,7 @@ export async function getServerSideProps(props, context) {
     //console.log(grossprofitall[0])
 
     return{
-        props: { overviewData, incomeData, priceData, balanceData, grossProfitAll, netProfitAll, netProfitMarginAll }
+        props: { overviewData, incomeData, priceData, balanceData, grossProfitAll, netProfitAll, netProfitMarginAll, logoImages }
     }
 
     
