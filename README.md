@@ -11,7 +11,7 @@ NextJS website parsing data from Alpha Vantage API and Yahoo Finance API to allo
 
 5 - Server should run at http://localhost:3000
 
-6 - Navigate to local host and UI should appear. Most tickers work (i.e. MSFT, AAPL, ADBE); however, more obscure tickers may give an error
+6 - Navigate to local host and UI should appear. Mostcommon US/UK tickers work (i.e. MSFT, AAPL, GSK, ADBE); however, more obscure tickers may throw an error
 
 7 - Allow around 20 to 30 seconds per ticker as the API has to fetch the data
 
