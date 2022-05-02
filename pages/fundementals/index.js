@@ -4,7 +4,8 @@ import { GetServerSideProps } from 'next'
 import styles from "../../styles/StockTable.module.scss"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import {BsArrowUp, BsArrowDown, BsBackspace} from "react-icons/bs"
+import {BsArrowUp, BsArrowDown, BsBackspace, BsSunFill, BsMoonFill} from "react-icons/bs"
+import {AiFillHome} from "react-icons/ai"
 import Button from 'react-bootstrap/Button'
 import OverlayStockTable from '../../components/OverlayStockTable'
 import Graphy from '../../components/Graphy'
@@ -26,46 +27,50 @@ const Index = (props, {income}) => {
 
 
     const dataSet = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  datasets: [{
-    label: '# of Votes',
-    data: [12, 19, 3, 5, 2, 3],
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(255, 159, 64, 0.2)'
-    ],
-    borderColor: [
-      'rgba(255, 99, 132, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(255, 159, 64, 1)'
-    ],
-    borderWidth: 1
-  }]
-}
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    }
 
+    const [darkMode, setDarkMode] = useState(false);
 
-
-
-
-
+    const handleDarkMode = (e) => {
+        if (darkMode){
+            setDarkMode(false)
+            console.log("Dark Mode Activated")
+        } else {
+            setDarkMode(true)
+            console.log("Dark Mode Deactivated")
+        } 
+        
+    }
+        
     
-
-
 
 
 
     //displays stock tickers in query:
     //console.log(ticketPayloadArray)
     //console.log(tickerPayloadLength)
-
-
     //displays api query
     //console.log(props.priceData[0]["Global Quote"]["05. price"])
     //console.log(props.incomeData[1]["50DayMovingAverage"])
@@ -73,20 +78,17 @@ const Index = (props, {income}) => {
     //console.log(props.incomeData[1]["annualReports"])
     //console.log(props.balanceData[0]["annualReports"])
 
-
-
-
     return (
-        <div className={styles.metaContainer}>
+        <div className={darkMode ? [styles.metaContainer, styles.darkModeScheme].join(" ") : styles.metaContainer}>
             <div className={styles.headComponents}>
-                <Button className={styles.homeButton} variant="danger" href='/'> <BsBackspace/> Home </Button>
-                <h1 className={styles.outputTitle}>Output</h1>
-                <div className={[styles.darkMode, "form-check form-switch"].join(" ")} >
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={console.log("on")}/>
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Dark Mode</label>
-                </div>
+                <Button className={styles.homeButton} variant="danger" href='/'> <AiFillHome/> Home </Button>
+                <h2 className={styles.outputTitle}>Comparison Report</h2>
+                <Button className={styles.darkMode} variant="primary" onClick={() => handleDarkMode()}>  {darkMode ?  <><BsSunFill/> Disable Dark Mode</> : <><BsMoonFill/> Enable Dark Mode</>} </Button>
+
+                
 
             </div>
+            {/**/}
 
             
 
@@ -105,9 +107,9 @@ const Index = (props, {income}) => {
 
                         {/*<Graphy/>*/}
 
-                        {/* Image -------------------------------------------------------------------------------------------------------------------------------------------*/}
+                        {/* Image */}
 
-                        <tr id={styles.whiteRow}><td></td>
+                        <tr id={styles.imageRow}><td></td>
                         {tickerPayloadArray.map((x, i) => {
                         return (
                         <td key={`logo${i}`}>
@@ -115,18 +117,14 @@ const Index = (props, {income}) => {
                         </td>)
                         })}</tr>
 
-                        
-
-
-
-                        {/* 1 - Stock Name Row */}
+                        {/* Stock Name */}
                         <tr id={styles.whiteRow}><td>Name</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`name${i}`}>{props.priceData[i]["shortName"]}</td>)
                         })}</tr>
 
-                        {/* 1 - Stock Name Row */}
+                        {/* Stock Sector */}
                         <tr id={styles.whiteRow}><td>Sector</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
@@ -134,7 +132,7 @@ const Index = (props, {income}) => {
                         })}</tr>
 
 
-                        {/* 2 - Analyst Rating  */}
+                        {/* Analyst Rating  */}
                         <tr id={styles.whiteRow}><td>Average Analyst Rating</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
@@ -142,44 +140,56 @@ const Index = (props, {income}) => {
                         })}</tr>    
 
 
-                        {/* Current Info Header (black) -----------------------------------------------------------------------------------------------------------------------*/}
+                        {/* Current Info Header -----------------------------------------------------------------------------------------------------------------------*/}
                         <tr id={styles.headerRow}><td>Current Stock Info</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`CurrentStockInfo${i}`}></td>)
                         })}</tr>
 
-                        {/* 3 - Realtime Stock Price Row */}
+                        {/* Realtime Stock Price */}
                         <tr id={styles.whiteRow}><td>Price</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`price${i}`}>{props.priceData[i]["regularMarketPrice"] + " " + props.priceData[i]["currency"]}</td>)
                         })}</tr>
 
-                        {/* 4 - Market Change Since Open */}
+                        {/* Market Change Since Close */}
                         <tr id={styles.whiteRow}><td>Change Since Close</td>
                         {tickerPayloadArray.map((x,i) => {
+                            const priceChange = props.priceData[i]["regularMarketChange"]
+                            function greenOrRed(change) {
+                                if (priceChange > 0) {
+                                    return styles.positiveChange
+                                    
+                                } else if (priceChange < 0) {
+                                    return styles.negativeChange
+                                } else {
+                                    return styles.noChange
+                                }
+                            }
+
                             return(
-                                <td key={`change${i}`}>{props.priceData[i]["regularMarketChange"].toFixed(2) + " " + props.priceData[i]["currency"] + "  (" + props.priceData[i]["regularMarketChangePercent"].toFixed(2) + " %)"}</td>
+                                <td key={`change${i}`} id={greenOrRed(priceChange)}>{priceChange.toFixed(2) + " " + props.priceData[i]["currency"] + "  (" + props.priceData[i]["regularMarketChangePercent"].toFixed(2) + " %)"}</td>
                                 )
                         })}</tr>
 
 
-                        {/* 6 - Fifty Day MA */}
+                        {/* Fifty Day MA */}
                         <tr id={styles.whiteRow}><td>50 Day MA</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`50dayMA${i}`}>{props.priceData[i]["fiftyDayAverage"].toFixed(2)}</td>)
                         })}</tr>
 
-                        {/* 6 - Two hundred Day MA */}
+                        {/* Two hundred Day MA */}
                         <tr id={styles.whiteRow}><td>200 Day MA</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`200dayMA${i}`}>{props.priceData[i]["twoHundredDayAverage"].toFixed(2)}</td>)
                         })}</tr>
 
-                        {/* 7 - 52 Week High */}
+                        {/* 52 Week High */}
                         <tr id={styles.whiteRow}><td>52 Week High</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
@@ -272,8 +282,8 @@ const Index = (props, {income}) => {
                             <div className={styles.analysisType}>
                                 <OverlayStockTable
                                 overlayHeader="PEG Ratio"
-                                overlayBody="The price-to-earnings (P/E) ratio relates a company's share price to its earnings per share.
-                                Ideally the PE should be lower than 20 but this can vary between different industries."/>
+                                overlayBody="The price-to-earnings-growth (PEG) ratio relates PE to its earnings growth. A fairly valued company and supports a PEG ratio of 1.0, an undervalued stock
+                                will be < 1.0, and an overvalued stock will be > 1.0."/>
                                 PEG Ratio <BsArrowDown/>
                             </div></td>
                         {tickerPayloadArray.map((x,i) => {
@@ -282,37 +292,91 @@ const Index = (props, {income}) => {
                         })}</tr>
 
 
-                        {/* Book Value */}
-                        <tr id={styles.whiteRow}><td>
-                            <div className={styles.analysisType}>
-                                <OverlayStockTable
-                                overlayHeader="Book Value"
-                                overlayBody="bbb"/>
-                                Book Value
-                            </div></td>
-                        {tickerPayloadArray.map((x,i) => {
-                            return(
-                                <td key={`pbRatio${i}`}>{ props.priceData[i]["bookValue"] }</td>)
-                        })}</tr>
+                        {/* Book Value per Share*/}
+                        <tr id={styles.whiteRow}>
+                            <td>
+                                <div className={styles.analysisType}>
+                                    <OverlayStockTable
+                                        overlayHeader="Book Value per Share"
+                                        overlayBody="Book value per share (BVPS) is the ratio of equity available to common shareholders / number of outstanding shares.
+                                        If a company’s BVPS is > its current stock price, it is considered undervalued."
+                                        /> Book Value Per Share (BVPS)
+                                </div>
+                            </td>
+                            {tickerPayloadArray.map((x,i) => {
+                                return(
+                                    <td key={`pbRatio${i}`}>{ props.priceData[i]["bookValue"] }</td>)
+                            })}
+                        </tr>
 
                         {/* Price to Book ratio (<1 ideal) */}
-                        <tr id={styles.whiteRow}><td> Price to Book ratio <BsArrowDown/> </td>
+                        <tr id={styles.whiteRow}>
+                            <td> 
+                                <div className={styles.analysisType}>
+                                    <OverlayStockTable
+                                        overlayHeader="PB Ratio"
+                                        overlayBody="PB ratio is calculated by dividing the company's stock price by its book value per share (BVPS). 
+                                        PB ratio varies between industries; however, the lower the PB the better the value."
+                                        /> Price to Book ratio <BsArrowDown/>    
+                                </div>
+                            </td>
+                            {tickerPayloadArray.map((x,i) => {
+                                return(
+                                    <td key={`pbRatio${i}`}>{ (props.priceData[i]["regularMarketPrice"] / props.priceData[i]["bookValue"]).toFixed(2) }</td>)
+                            })}
+                        </tr>
+
+                        {/* Return on Equity */}
+                        <tr id={styles.whiteRow}><td> Return on Equity (ROE) <BsArrowUp/> (14%+) </td>
                         {tickerPayloadArray.map((x,i) => {
+                            const netIncome = props.incomeData[i]["annualReports"][0]["netIncome"]
+                            const shareholdersEquity = props.balanceData[i]["annualReports"][0]["totalShareholderEquity"]
                             return(
-                                <td key={`pbRatio${i}`}>{ (props.priceData[i]["regularMarketPrice"] / props.priceData[i]["bookValue"]).toFixed(2) }</td>)
+                                <td key={`roe${i}`}> {(( netIncome/shareholdersEquity )*100).toFixed(2) + " %"} </td>)
+                        })}</tr>
+ 
+
+                        {/* Total Shareholder Yield */}
+                        <tr id={styles.whiteRow}><td> Total Shareholder Yield <BsArrowUp/> </td>
+                        {tickerPayloadArray.map((x,i) => {
+                            function shareHolderYield(div, shareRepurchase, debtRepayment, marketCap) {
+                                return (((div + shareRepurchase + debtRepayment) / marketCap)*100).toFixed(2) + " %"
+                            }
+                            function netDebtChangeCalculation(annualReport) {
+                                // Net debt = (std + ltd) - cce
+                                const netDebtCurrent = (+annualReport[0]["shortTermDebt"] + +annualReport[0]["longTermDebt"]) - annualReport[0]["cashAndCashEquivalentsAtCarryingValue"]
+                                const netDebtPrevious = (+annualReport[1]["shortTermDebt"] + +annualReport[1]["longTermDebt"]) - annualReport[1]["cashAndCashEquivalentsAtCarryingValue"]
+                                return netDebtPrevious - netDebtCurrent
+                            }
+                            function dividend(dps, sharesOutstanding) {
+                                if (dps <= 0) {return 0} else {return dps * sharesOutstanding}
+                            }
+                            const dividendTotal = dividend(props.overviewData[i]["DividendPerShare"], props.balanceData[i]["annualReports"][0]["commonStockSharesOutstanding"])
+                            console.log(dividendTotal)
+                            const netShareRepurchase = props.balanceData[i]["annualReports"][1]["totalShareholderEquity"] - props.balanceData[i]["annualReports"][0]["totalShareholderEquity"]
+                            const netDebtRepayment = netDebtChangeCalculation(props.balanceData[i]["annualReports"])
+                            const marketCapitalisation = props.balanceData[i]["annualReports"][0]["commonStockSharesOutstanding"] * props.priceData[i]["regularMarketPrice"]
+                            return(
+                                <td key={`shareholderYield${i}`}> {shareHolderYield(dividendTotal, netShareRepurchase, netDebtRepayment, marketCapitalisation)}</td>)
                         })}</tr>
 
 
-
-
-
-
-                        {/* Gross Profit Growth Header */}
-                        <tr id={styles.yoyHeader}><td>Gross Profit Growth (YoY) <BsArrowUp/> </td>
-                        {tickerPayloadArray.map((x,i) => {
-                            return(
-                                <td key={`grossProfit${i}`}></td>)
-                        })}</tr>
+                        {/* Gross Profit Growth Header -----------------------------------------------------------------------------------------------------*/}
+                        <tr id={styles.yoyHeader}>
+                            <td>
+                                <div className={styles.analysisType}>
+                                    <OverlayStockTable
+                                        overlayHeader="Gross Profit Growth (Year on Year)"
+                                        overlayBody="The growth each year of the Gross Profit which is defined as the profit a 
+                                        company makes after deducting the costs associated with making/selling products or providing its services. ."
+                                        /> Gross Profit Growth (YoY) <BsArrowUp/>  
+                                </div> 
+                            </td>
+                            {tickerPayloadArray.map((x,i) => {
+                                return(
+                                    <td key={`grossProfit${i}`}></td>)
+                            })}
+                        </tr>
                                                             
                         <tr id={styles.yoyRow}><td id={styles.year}> {new Date().getFullYear() - 1} </td>
                         {tickerPayloadArray.map((x,i) => {
@@ -340,12 +404,22 @@ const Index = (props, {income}) => {
                                 <td key={`yr5-${i}`}> { grossProfitProps[i][4] } </td>)})}</tr>
 
 
-                        {/* Gross Profit Growth Header */}
-                        <tr id={styles.yoyHeader}><td>Net Profit Growth (YoY) <BsArrowUp/></td>
-                        {tickerPayloadArray.map((x,i) => {
-                            return(
-                                <td key={`netProfit${i}`}></td>)
-                        })}</tr>
+                        {/* Net Profit Growth Header ----------------------------------------------------------------------------------------*/}
+                        <tr id={styles.yoyHeader}>
+                            <td>
+                                <div className={styles.analysisType}>
+                                    <OverlayStockTable
+                                        overlayHeader="Net Profit Growth (Year on Year)"
+                                        overlayBody="The growth each year of the company's Net Profit which is defined as the profit a 
+                                        company makes after deducting all costs (cost of goods sold, selling, general and administrative expenses, operating expenses, depreciation, interest, taxes)."
+                                        /> Net Profit Growth (YoY) <BsArrowUp/>  
+                                </div>
+                            </td>
+                            {tickerPayloadArray.map((x,i) => {
+                                return(
+                                    <td key={`netProfit${i}`}></td>)
+                            })}
+                        </tr>
 
                         <tr id={styles.yoyRow}><td id={styles.year}> {new Date().getFullYear() - 1} </td>
                         {tickerPayloadArray.map((x,i) => {
@@ -373,9 +447,18 @@ const Index = (props, {income}) => {
                                 <td key={`yr5-${i}`}> { netProfitProps[i][4] } </td>)})}</tr>        
 
 
-
-                        {/* Net Profit Margin Header */}
-                        <tr id={styles.yoyHeader}><td>Net Profit Margin (YoY) <BsArrowUp/></td>
+                        {/* Net Profit Margin Header ---------------------------------------------------------------------------------------------*/}
+                        <tr id={styles.yoyHeader}>
+                            <td>
+                                
+                                <div className={styles.analysisType}>
+                                    <OverlayStockTable
+                                        overlayHeader="Net Profit Margin Growth (Year on Year)"
+                                        overlayBody="The growth each year of the Net Profit Margin which is defined as the percentage of profit kept by the company per dollar of revenue."
+                                        /> Net Profit Margin (YoY) <BsArrowUp/>  
+                                </div> 
+                            
+                            </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`netProfitMargin${i}`}></td>)
@@ -407,26 +490,7 @@ const Index = (props, {income}) => {
                                 <td key={`yr5-${i}`}> { profitMarginProps[i][4]} </td>)})}</tr>
 
 
-                        {/* Return on Equity */}
-                        <tr id={styles.whiteRow}><td> Return on Equity (ROE) <BsArrowUp/> (14%+) </td>
-                        {tickerPayloadArray.map((x,i) => {
-                            return(
-                                <td key={`roe${i}`}> {((props.incomeData[i]["netIncome"] / props.balanceData[i]["totalShareholderEquity"])*100).toFixed(2) + " %"} </td>)
-                        })}</tr>
-
-                         {/* Free Cash Flow Yield */}
-                         <tr id={styles.whiteRow}><td> Free Cash Flow Yield <BsArrowUp/> (5%+) </td>
-                        {tickerPayloadArray.map((x,i) => {
-                            return(
-                                <td key={`fcfy${i}`}> insertDataHere</td>)
-                        })}</tr>      
-
-                        {/* Total Shareholder Yield */}
-                        <tr id={styles.whiteRow}><td> Total Shareholder Yield <BsArrowUp/> </td>
-                        {tickerPayloadArray.map((x,i) => {
-                            return(
-                                <td key={`shareholderYield${i}`}> insertDataHere</td>)
-                        })}</tr>                 
+                 
 
 
 
@@ -441,14 +505,14 @@ const Index = (props, {income}) => {
                         <tr id={styles.whiteRow}><td> Dividend Per Share</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
-                                <td key={`divPerShare${i}`}> {props.overviewData[i]["DividendPerShare"]}</td>)
+                                <td key={`divPerShare${i}`}> {(props.overviewData[i]["DividendPerShare"]*1).toFixed(2)}</td>)
                         })}</tr>
 
                         {/* Dividend Yield */}
                         <tr id={styles.whiteRow}><td> Dividend Yield</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
-                                <td key={`divYield${i}`}> {(props.overviewData[i]["DividendYield"]*100) + " %"}</td>)
+                                <td key={`divYield${i}`}> {(props.overviewData[i]["DividendYield"]*100).toFixed(2) + " %"}</td>)
                         })}</tr>                    
 
                         {/* Financials Header (black) ------------------------------------------------------------------------------------------------------------------ */}
@@ -728,7 +792,10 @@ export async function getServerSideProps(props, context) {
         });
 
         const logoQuery = overview["Name"]
-        const results = await google.scrape(`${logoQuery} official logo`, 1);
+        const logoQueryTest = "a"
+        const concat = `${logoQuery} SVG logo`
+        console.log(concat)
+        const results = await google.scrape(concat, 1);
         const image = results[0]["url"]
         console.log(image);
         logoImages.push(image)

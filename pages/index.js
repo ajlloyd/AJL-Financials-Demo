@@ -69,11 +69,9 @@ export default function Home(props) {
           <a href="https://ajlloyd-solutions.herokuapp.com/"><RiMoneyPoundCircleFill/> AJL Financials</a>
 
         </div>
-
         <div className={styles.navRight}>
           <a href='/documentation'>Documentation</a>
-
-          <a href="/support">Support</a>
+          <a href="mailto:ajlloyd.dev@gmail.com">Contact</a>
         </div>
 
       </nav>
@@ -111,7 +109,8 @@ export default function Home(props) {
 
       <div className={styles.footer}>
           <small>Copyright Aaron Lloyd Development © </small>
-          <small>Version 22.1</small>
+          <small>ajlloyd.dev@gmail.com </small>
+          <small>Version 22.2</small>
 
       </div>
       
