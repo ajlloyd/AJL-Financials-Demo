@@ -70,7 +70,7 @@ export default function Home(props) {
 
         </div>
         <div className={styles.navRight}>
-          <a href='/documentation'>Documentation</a>
+          <Link href='/documentation'>Documentation</Link>
           <a href="mailto:ajlloyd.dev@gmail.com">Contact</a>
         </div>
 

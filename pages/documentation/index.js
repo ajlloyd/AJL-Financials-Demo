@@ -75,7 +75,7 @@ const documentation = () => {
         <h3 id={styles.docSubtitle}>Planned Updates</h3>
         <ul>
           <li>Adding API keys with no request limits to speed up the processing of data </li>
-          <li>Adding logic so undefined tickers won't cause entire analysis run to error out</li>
+          <li>Adding logic so undefined tickers will not cause entire analysis run to error out</li>
           <li>Adding visualisation for data (via Chart.js) </li>
           <li>Finishing the info buttons for all metrics </li>
         </ul>
