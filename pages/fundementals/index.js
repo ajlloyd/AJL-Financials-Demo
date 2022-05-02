@@ -18,38 +18,11 @@ const Index = (props, {income}) => {
     const router = useRouter();
     const tickerPayloadObject = router.query;
     const tickerPayloadArray = Object.values(tickerPayloadObject)
-    console.log(tickerPayloadArray)
-
+    //console.log(tickerPayloadArray)
 
     const grossProfitProps = props.grossProfitAll
     const netProfitProps = props.netProfitAll
     const profitMarginProps = props.netProfitMarginAll
-
-
-    const dataSet = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    }
 
     const [darkMode, setDarkMode] = useState(false);
 
@@ -64,31 +37,17 @@ const Index = (props, {income}) => {
         
     }
         
-    
-
-
-
-    //displays stock tickers in query:
-    //console.log(ticketPayloadArray)
-    //console.log(tickerPayloadLength)
-    //displays api query
-    //console.log(props.priceData[0]["Global Quote"]["05. price"])
-    //console.log(props.incomeData[1]["50DayMovingAverage"])
-    //console.log(props.router.query.name);
-    //console.log(props.incomeData[1]["annualReports"])
-    //console.log(props.balanceData[0]["annualReports"])
-
     return (
         <div className={darkMode ? [styles.metaContainer, styles.darkModeScheme].join(" ") : styles.metaContainer}>
             <div className={styles.headComponents}>
-                <Button className={styles.homeButton} variant="danger" href='/'> <AiFillHome/> Home </Button>
+                
+                <Link href='/'>
+                    <Button className={styles.homeButton} variant="danger"> <AiFillHome/> Home </Button>
+                </Link>
+
                 <h2 className={styles.outputTitle}>Comparison Report</h2>
                 <Button className={styles.darkMode} variant="primary" onClick={() => handleDarkMode()}>  {darkMode ?  <><BsSunFill/> Disable Dark Mode</> : <><BsMoonFill/> Enable Dark Mode</>} </Button>
-
-                
-
             </div>
-            {/**/}
 
             
 

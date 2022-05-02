@@ -47,7 +47,7 @@ const documentation = () => {
           <img id={styles.listImage} src='/stepOne.png'/>
           <li id={styles.listText}>Up to five tickers can be added and searched for. See example below using Microsoft (MSFT) and Alphabet (GOOGL):</li>
           <img id={styles.listImage} src='/stepThree.png'/>
-          <li id={styles.listText}>Once you have input the tickers you wish to compare, click "Submit" and allow 30 seconds per ticker for the API to run:</li>
+          <li id={styles.listText}>Once you have input the tickers you wish to compare, click Submit and allow 30 seconds per ticker for the API to run:</li>
           <img id={styles.listImage} src='/stepFour.png'/>
           <li id={styles.listText}>Once complete you will be met with the comparison report as below:</li>
           <img id={styles.listImage} src='/stepFive.png'/>
@@ -55,14 +55,14 @@ const documentation = () => {
           <li id={styles.listText}>The data can then be interpreted by the user, depending on which metrics they value most for their investing style, to assist them in making a better informed descision</li>
           <li id={styles.listText}>In order to assist the user information icons have been added which give an explanation of each metric: </li>
           <img id={styles.listImage} src='/stepSix.png'/>
-          <li id={styles.listText}>Finally, users can toggle "Dark Mode" at the top which is easier on the eyes in low light: </li>
+          <li id={styles.listText}>Finally, users can toggle Dark Mode at the top which is easier on the eyes in low light: </li>
           <img id={styles.listImage} src='/stepSeven.png'/>
         </ol>
 
 
         <h3 id={styles.docSubtitle}>Issues</h3>
         <ul>
-          <li>Certain well known tickers return "undefined" and cause application to error. These include: </li>
+          <li>Certain well known tickers return undefined and cause application to error. These include: </li>
           <ul>
             <li>Tencent (TCEHY)</li>
             <li>Nestlé (NSRGY)</li>
