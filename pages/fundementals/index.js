@@ -9,6 +9,7 @@ import {AiFillHome} from "react-icons/ai"
 import Button from 'react-bootstrap/Button'
 import OverlayStockTable from '../../components/OverlayStockTable'
 var Scraper = require('images-scraper');
+import chromium from "chrome-aws-lambda";
 
 
 
@@ -740,10 +741,14 @@ export async function getServerSideProps(props, context) {
         netProfitMarginAll.push(normalisedNetProfitMargin)
 
         //image:
+        
+        const browser = await chromium.puppeteer.launch({
+            executablePath: await chromium.executablePath,
+        });
         console.log(`Image Scraper running ${ticker}... `);
         const google = new Scraper({
             puppeteer: {
-              headless: false,
+              headless: true,
             },
         });
 
@@ -754,7 +759,7 @@ export async function getServerSideProps(props, context) {
         const results = await google.scrape(concat, 1);
         const image = results[0]["url"]
         console.log(image);
-        logoImages.push(image)
+    logoImages.push(image)
 
 
 
