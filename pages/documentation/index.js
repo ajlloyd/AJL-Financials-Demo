@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import {AiFillHome} from "react-icons/ai"
 import styles from "../../styles/Documentation.module.scss"
+import Link from "next/Link"
 
 const documentation = () => {
   return (
@@ -28,6 +29,7 @@ const documentation = () => {
 
         <h3 id={styles.docSubtitle}>Background</h3>
         <ul>
+          <li>This is a demo version to show functionality. A full version is available for download here - <Link href='https://github.com/ajlloyd/AJL-Financials'> https://github.com/ajlloyd/AJL-Financials </Link></li>
           <li>AJL Financials is a project developed by Aaron Lloyd Development</li>
           <li>This site is built with the NextJS framework for React</li>
           <li>Data is provided by <a href='https://www.alphavantage.co/'>Alpha Vantage API</a> and the <a href='https://www.yahoofinanceapi.com/'>Yahoo Finance API</a></li>

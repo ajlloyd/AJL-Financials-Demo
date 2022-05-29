@@ -8,7 +8,6 @@ import {BsArrowUp, BsArrowDown, BsBackspace, BsSunFill, BsMoonFill} from "react-
 import {AiFillHome} from "react-icons/ai"
 import Button from 'react-bootstrap/Button'
 import OverlayStockTable from '../../components/OverlayStockTable'
-import Graphy from '../../components/Graphy'
 var Scraper = require('images-scraper');
 
 
@@ -63,8 +62,6 @@ const Index = (props, {income}) => {
                         return (
                         <td key={`dynamicTickerHeader${i}`}>{x}</td>)
                         })}</tr>
-
-                        {/*<Graphy/>*/}
 
                         {/* Image */}
 
@@ -285,17 +282,17 @@ const Index = (props, {income}) => {
                             })}
                         </tr>
 
-                        {/* Return on Equity */}
+                        {/* Return on Equity 
                         <tr id={styles.whiteRow}><td> Return on Equity (ROE) <BsArrowUp/> (14%+) </td>
                         {tickerPayloadArray.map((x,i) => {
                             const netIncome = props.incomeData[i]["annualReports"][0]["netIncome"]
                             const shareholdersEquity = props.balanceData[i]["annualReports"][0]["totalShareholderEquity"]
                             return(
                                 <td key={`roe${i}`}> {(( netIncome/shareholdersEquity )*100).toFixed(2) + " %"} </td>)
-                        })}</tr>
+                        })}</tr>*/}
  
 
-                        {/* Total Shareholder Yield */}
+                        {/* Total Shareholder Yield 
                         <tr id={styles.whiteRow}><td> Total Shareholder Yield <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             function shareHolderYield(div, shareRepurchase, debtRepayment, marketCap) {
@@ -317,7 +314,7 @@ const Index = (props, {income}) => {
                             const marketCapitalisation = props.balanceData[i]["annualReports"][0]["commonStockSharesOutstanding"] * props.priceData[i]["regularMarketPrice"]
                             return(
                                 <td key={`shareholderYield${i}`}> {shareHolderYield(dividendTotal, netShareRepurchase, netDebtRepayment, marketCapitalisation)}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
 
                         {/* Gross Profit Growth Header -----------------------------------------------------------------------------------------------------*/}
@@ -525,84 +522,84 @@ const Index = (props, {income}) => {
                                 <td key={`grossProfit${i}`}> {(((props.incomeData[i]["annualReports"][0]["operatingIncome"]/props.incomeData[i]["annualReports"][0]["totalRevenue"])*100).toFixed(2)) + " %"} </td>)
                         })}</tr>
 
-                        {/* Balance Sheet Header (black) ---------------------------------------------------------------------------------------------------------------------- */}
+                        {/* Balance Sheet Header (black) ---------------------------------------------------------------------------------------------------------------------- 
                         <tr id={styles.headerRow}><td>Balance Sheet</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`balance${i}`}></td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* Total Cash and ST investments */}
+                        {/* Total Cash and ST investments 
                         <tr id={styles.whiteRow}><td>Total Cash and Short Term Investments</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`cashAndInvestments${i}`}>{((props.balanceData[i]["annualReports"][0]["cashAndShortTermInvestments"]/10000000|0).toLocaleString())}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* Total Current Assets */}
+                        {/* Total Current Assets 
                         <tr id={styles.whiteRow}><td>Total Current Assets</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`currentAssets${i}`}>{((props.balanceData[i]["annualReports"][0]["totalCurrentAssets"]/10000000|0).toLocaleString())}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* Total Current Liabilities */}
+                        {/* Total Current Liabilities 
                         <tr id={styles.whiteRow}><td>Total Current Liabilities</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`currentLiabilities${i}`}>{((props.balanceData[i]["annualReports"][0]["totalCurrentLiabilities"]/10000000|0).toLocaleString())}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* Total 1 year Excess */}
+                        {/* Total 1 year Excess 
                         <tr id={styles.whiteRow}><td>1 Year Current Excess <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`oneYearExcess${i}`}>{(((props.balanceData[i]["annualReports"][0]["totalCurrentAssets"] - props.balanceData[i]["annualReports"][0]["totalCurrentLiabilities"])/10000000|0).toLocaleString())}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* Asset to Liability Ratio */}
+                        {/* Asset to Liability Ratio 
                         <tr id={styles.whiteRow}><td>Current Asset to Liability Ratio <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`assetToLiabilityRatio${i}`}>{((props.balanceData[i]["annualReports"][0]["totalCurrentAssets"]/props.balanceData[i]["annualReports"][0]["totalCurrentLiabilities"]).toFixed(2))}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* Total Assets */}
+                        {/* Total Assets 
                         <tr id={styles.whiteRow}><td>Total Assets</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`totalAssets${i}`}>{((props.balanceData[i]["annualReports"][0]["totalAssets"]/10000000|0).toLocaleString())}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* Total Liabilities */}
+                        {/* Total Liabilities 
                         <tr id={styles.whiteRow}><td>Total Liabilities</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`totalLiabilities${i}`}>{((props.balanceData[i]["annualReports"][0]["totalLiabilities"]/10000000|0).toLocaleString())}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* TATL Ratio */}
+                        {/* TATL Ratio 
                         <tr id={styles.whiteRow}><td>Total Asset to Liability Ratio (TATL) <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`assetToLiabilityRatio${i}`}>{((props.balanceData[i]["annualReports"][0]["totalAssets"]/props.balanceData[i]["annualReports"][0]["totalLiabilities"]).toFixed(2))}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* Total Shareholder Equity */}
+                        {/* Total Shareholder Equity 
                         <tr id={styles.whiteRow}><td>Total Shareholder Equity</td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`totalShareholderEquity${i}`}>{((props.balanceData[i]["annualReports"][0]["totalShareholderEquity"]/10000000|0).toLocaleString())}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* Debt to Equity Ratio */}
+                        {/* Debt to Equity Ratio 
                         <tr id={styles.whiteRow}><td>Debt to Equity Ratio <BsArrowDown/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             return(
                                 <td key={`debtToEquity${i}`}>{((props.balanceData[i]["annualReports"][0]["totalLiabilities"]/props.balanceData[i]["annualReports"][0]["totalShareholderEquity"]).toFixed(2))}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
-                        {/* Altman Z-Score */}
+                        {/* Altman Z-Score 
                         <tr id={styles.whiteRow}><td>Altman Z-Score <BsArrowUp/> </td>
                         {tickerPayloadArray.map((x,i) => {
                             const totalAssets = props.balanceData[i]["annualReports"][0]["totalAssets"]
@@ -617,7 +614,7 @@ const Index = (props, {income}) => {
                             const altmanZScore = (1.2*a) + (1.4*b) + (3.3*c) + (0.6*d) + (1.0*e)
                             return(
                                 <td key={`debtToEquity${i}`}>{altmanZScore.toFixed(2)}</td>)
-                        })}</tr>
+                        })}</tr>*/}
 
                     </tbody>
                 </table>
@@ -711,18 +708,18 @@ export async function getServerSideProps(props, context) {
         const priceResponse = await fetch(`https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=${ticker}`, {
             method: "GET", 
             accept: "application/json",
-            headers: {'x-api-key': 'u74BHf6Zs044lOC4blIke4uvHWmsEdPZ5v4gbJT6'}});
+            headers: {'x-api-key': 'iRNetd47al209NQNtgJcg4e2vbOM5N8g2oiz5Row'}});
         const prices = await priceResponse.json();
         const shortenedPrices = prices["quoteResponse"]["result"][0]
         priceData.push(shortenedPrices);
 
 
         // ----- Balance Sheet Data - Alpha Vantage API -----:
-        console.log(`Balance query running ${ticker}... `);
+        /*console.log(`Balance query running ${ticker}... `);
         const balanceResponse = await fetch(`https://www.alphavantage.co/query?function=BALANCE_SHEET&symbol=${ticker}&apikey=Z7EE76KI01SJKDIN`);
         const balance = await balanceResponse.json();
         balanceData.push(balance);
-        await sleep(12000);
+        await sleep(12000);*/
 
         // Gross profit growth:
         console.log(`Gross Profit Growth Calculation running ${ticker}... `);
@@ -746,7 +743,7 @@ export async function getServerSideProps(props, context) {
         console.log(`Image Scraper running ${ticker}... `);
         const google = new Scraper({
             puppeteer: {
-              headless: true,
+              headless: false,
             },
         });
 
@@ -772,8 +769,9 @@ export async function getServerSideProps(props, context) {
     //console.log(balanceData)
     //console.log(grossprofitall[0])
 
+    //balance data removed for demo (balanceData)
     return{
-        props: { overviewData, incomeData, priceData, balanceData, grossProfitAll, netProfitAll, netProfitMarginAll, logoImages }
+        props: { overviewData, incomeData, priceData, grossProfitAll, netProfitAll, netProfitMarginAll, logoImages }
     }
 
     

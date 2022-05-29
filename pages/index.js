@@ -33,10 +33,10 @@ export default function Home(props) {
   const handleAddClick = () => {
     console.log(inputList)
     var length = inputList.length;
-    if (length <= 4) {
+    if (length <= 1) {
       setInputList([...inputList, { ticker: "" }]);
     } else {
-      alert("You may only compare 5 stocks")
+      alert("You may only compare 2 stocks in this demo version \n \n Find the full version at https://github.com/ajlloyd/AJL-Financials")
     }
   };
 
@@ -66,7 +66,8 @@ export default function Home(props) {
       </Head>
       <nav className={styles.navBar}>
         <div className={styles.navLeft}>
-          <a href="https://ajlloyd-solutions.herokuapp.com/"><RiMoneyPoundCircleFill/> AJL Financials</a>
+          <a href="https://ajlloyd-solutions.herokuapp.com/"><RiMoneyPoundCircleFill/> AJL Financials</a> 
+          <small>Demo Version</small>
 
         </div>
         <div className={styles.navRight}>
