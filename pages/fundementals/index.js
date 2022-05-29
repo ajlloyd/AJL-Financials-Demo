@@ -8,7 +8,6 @@ import {BsArrowUp, BsArrowDown, BsBackspace, BsSunFill, BsMoonFill} from "react-
 import {AiFillHome} from "react-icons/ai"
 import Button from 'react-bootstrap/Button'
 import OverlayStockTable from '../../components/OverlayStockTable'
-var Scraper = require('images-scraper');
 
 
 
@@ -63,7 +62,7 @@ const Index = (props, {income}) => {
                         <td key={`dynamicTickerHeader${i}`}>{x}</td>)
                         })}</tr>
 
-                        {/* Image */}
+                        {/* Image 
 
                         <tr id={styles.imageRow}><td></td>
                         {tickerPayloadArray.map((x, i) => {
@@ -71,7 +70,7 @@ const Index = (props, {income}) => {
                         <td key={`logo${i}`}>
                             <img id={styles.logoImage} src={props.logoImages[i]} />
                         </td>)
-                        })}</tr>
+                        })}</tr>*/}
 
                         {/* Stock Name */}
                         <tr id={styles.whiteRow}><td>Name</td>
