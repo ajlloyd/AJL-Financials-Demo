@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import {AiFillHome} from "react-icons/ai"
 import styles from "../../styles/Documentation.module.scss"
-import Link from "next/Link"
+import Link from 'next/link';
 
 const documentation = () => {
   return (
