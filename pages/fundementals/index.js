@@ -707,7 +707,7 @@ export async function getServerSideProps(props, context) {
         const priceResponse = await fetch(`https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=${ticker}`, {
             method: "GET", 
             accept: "application/json",
-            headers: {'x-api-key': 'iRNetd47al209NQNtgJcg4e2vbOM5N8g2oiz5Row'}});
+            headers: {'x-api-key': 'NWIynlseAv3Ri0V6OuoFS8L8WZXFl1H3aKLjZi80'}});
         const prices = await priceResponse.json();
         const shortenedPrices = prices["quoteResponse"]["result"][0]
         priceData.push(shortenedPrices);
