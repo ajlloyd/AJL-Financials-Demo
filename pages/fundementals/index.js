@@ -13,9 +13,11 @@ import OverlayStockTable from '../../components/OverlayStockTable'
 
 const Index = (props, {income}) => {
 
+
     const router = useRouter();
     const tickerPayloadObject = router.query;
     const tickerPayloadArray = Object.values(tickerPayloadObject)
+
     //console.log(tickerPayloadArray)
 
     const grossProfitProps = props.grossProfitAll
@@ -687,7 +689,7 @@ export async function getServerSideProps(props, context) {
 
         // ----- Overview Data - Alpha Vantage API -----:
         console.log(`Overview query running ${ticker}... `);
-        const overviewResponse = await fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=Z7EE76KI01SJKDIN`);
+        const overviewResponse = await fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${process.env.AV_API_KEY}`);
         const overview = await overviewResponse.json();
         overviewData.push(overview);
         console.log(overview)
@@ -696,19 +698,20 @@ export async function getServerSideProps(props, context) {
 
         // ----- Income Data - Alpha Vantage API -----:
         console.log(`Income query running ${ticker}... `);
-        const incomeResponse = await fetch(`https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=${ticker}&apikey=Z7EE76KI01SJKDIN`);
+        const incomeResponse = await fetch(`https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=${ticker}&apikey=${process.env.AV_API_KEY}`);
         const income = await incomeResponse.json();
         incomeData.push(income);
         console.log(income)
-        await sleep(12000);  
+        //await sleep(12000);  
 
         // ----- Price Data - Yahoo Finance API -----:
         console.log(`Price query running ${ticker}... `);
         const priceResponse = await fetch(`https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=${ticker}`, {
             method: "GET", 
             accept: "application/json",
-            headers: {'x-api-key': 'NWIynlseAv3Ri0V6OuoFS8L8WZXFl1H3aKLjZi80'}});
+            headers: {'x-api-key': process.env.YAHOO_API_KEY}});
         const prices = await priceResponse.json();
+        console.log(prices)
         const shortenedPrices = prices["quoteResponse"]["result"][0]
         priceData.push(shortenedPrices);
 

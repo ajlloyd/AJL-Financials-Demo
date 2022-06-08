@@ -9,6 +9,7 @@ import favicon from '../public/favicon.ico';
 
 function MyApp({ Component, pageProps, props }) {
 
+
   const [loading, setLoading] = useState(false);
 
 
